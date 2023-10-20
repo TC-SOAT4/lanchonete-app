@@ -8,7 +8,6 @@ public class LanchoneteAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LanchoneteAppApplication.class, args);
-		
 	}
 
 }
