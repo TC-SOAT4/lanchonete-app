@@ -9,6 +9,7 @@ import com.fiap.lanchoneteapp.domain.produto.core.dto.EditarProdutoRequest;
 import com.fiap.lanchoneteapp.domain.produto.core.dto.ProdutoResponse;
 import com.fiap.lanchoneteapp.domain.produto.core.model.Categoria;
 import com.fiap.lanchoneteapp.domain.produto.core.model.Produto;
+import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IBuscarProdutosPorCategoria;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.ICriarProduto;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IEditarProduto;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IListarTodoProdutos;
@@ -19,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class ProdutoService implements ICriarProduto, IEditarProduto, IRemoverProduto, IListarTodoProdutos {
+public class ProdutoService implements ICriarProduto, IEditarProduto, IRemoverProduto, IListarTodoProdutos, IBuscarProdutosPorCategoria {
 
     private final ProdutoRepositoryAdapter produtoRepositoryAdapter;
 
@@ -62,6 +63,11 @@ public class ProdutoService implements ICriarProduto, IEditarProduto, IRemoverPr
     @Override
     public List<ProdutoResponse> listarTodos() {
         return produtoRepositoryAdapter.listarTodos().stream().map(prduto -> new ProdutoResponse(prduto)).toList();
+    }
+
+    @Override
+    public List<ProdutoResponse> buscarPorCategoria(Integer idCategoria) {
+        return produtoRepositoryAdapter.buscarPorCategoria(idCategoria).stream().map(prduto -> new ProdutoResponse(prduto)).toList();
     }
 
 }

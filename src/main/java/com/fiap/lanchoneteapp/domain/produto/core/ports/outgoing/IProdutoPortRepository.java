@@ -1,5 +1,6 @@
 package com.fiap.lanchoneteapp.domain.produto.core.ports.outgoing;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.fiap.lanchoneteapp.domain.produto.core.model.Produto;
@@ -13,5 +14,9 @@ public interface IProdutoPortRepository {
     public void remover(Produto produto);
 
     public Optional<Produto> buscarPorId(Integer idProduto);
+
+    public List<Produto> listarTodos();
+
+    public List<Produto> buscarPorCategoria(Integer idCategoria);
 
 }

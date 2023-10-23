@@ -37,8 +37,14 @@ public class ProdutoRepositoryAdapter implements IProdutoPortRepository {
         return produtoRepository.findById(idProduto);
     }
 
+     @Override
     public List<Produto> listarTodos() {
         return produtoRepository.findAll();
+    }
+
+    @Override
+    public List<Produto> buscarPorCategoria(Integer idCategoria) {
+        return produtoRepository.findAllByCategoriaIdCategoria(idCategoria);
     }
 
 }

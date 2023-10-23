@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fiap.lanchoneteapp.domain.produto.core.dto.CadastroProdutoRequest;
 import com.fiap.lanchoneteapp.domain.produto.core.dto.EditarProdutoRequest;
 import com.fiap.lanchoneteapp.domain.produto.core.dto.ProdutoResponse;
+import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IBuscarProdutosPorCategoria;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.ICriarProduto;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IEditarProduto;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IListarTodoProdutos;
@@ -35,6 +37,7 @@ public class ProdutoController {
     private final IEditarProduto iEditarProduto;
     private final IRemoverProduto iRemoverProduto;
     private final IListarTodoProdutos iListarTodoProdutos;
+    private final IBuscarProdutosPorCategoria iBuscarProdutosPorCategoria;
 
     @GetMapping
     @Operation(summary = "Listar todos", description = "listar todos os produtos")
@@ -63,4 +66,10 @@ public class ProdutoController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/buscar-por-categoria")
+    @Operation(summary = "Buscar por Categoria", description = "Buscar produtos por categoria")
+    public ResponseEntity<List<ProdutoResponse>> buscarPorCategoria(@RequestParam(name = "codigoCategoria", required = true) Integer codigoCategoria) {
+        return ResponseEntity.ok().body(iBuscarProdutosPorCategoria.buscarPorCategoria(codigoCategoria));
+    }
+    
 }
