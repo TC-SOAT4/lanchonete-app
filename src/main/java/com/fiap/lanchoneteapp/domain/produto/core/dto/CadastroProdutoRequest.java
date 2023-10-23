@@ -9,9 +9,6 @@ import lombok.Data;
 @Data
 public class CadastroProdutoRequest {
 
-    @NotNull
-    private Integer idProduto;
-
     @NotBlank
     private String nome;
 
@@ -22,6 +19,6 @@ public class CadastroProdutoRequest {
     private BigDecimal valor;
 
     @NotNull
-    private Integer categoria;
+    private Integer codigoCategoria;
     
 }

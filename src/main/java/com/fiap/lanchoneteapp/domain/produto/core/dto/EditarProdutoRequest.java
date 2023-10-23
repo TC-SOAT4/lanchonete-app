@@ -2,6 +2,8 @@ package com.fiap.lanchoneteapp.domain.produto.core.dto;
 
 import java.math.BigDecimal;
 
+import com.fiap.lanchoneteapp.domain.produto.core.model.Categoria;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -9,7 +11,10 @@ import lombok.Data;
 @Data
 public class EditarProdutoRequest {
 
-     @NotBlank
+    @NotNull
+    private Integer idProduto;
+
+    @NotBlank
     private String nome;
 
     @NotBlank
@@ -19,7 +24,7 @@ public class EditarProdutoRequest {
     private BigDecimal valor;
 
     @NotNull
-    private Integer categoria;
+    private Categoria categoria;
 
     @NotNull
     private Boolean ativo;
