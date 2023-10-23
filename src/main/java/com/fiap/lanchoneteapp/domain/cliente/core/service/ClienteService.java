@@ -25,7 +25,7 @@ public class ClienteService implements ICadastrarCliente, IBuscarClientePorCpf {
                                     .ativo(Boolean.TRUE)
                                     .build();
 
-        novoCliente = clientePortRepository.save(novoCliente);
+        novoCliente = clientePortRepository.salvar(novoCliente);
 
         return new ClienteResponseDTO(novoCliente);
     }

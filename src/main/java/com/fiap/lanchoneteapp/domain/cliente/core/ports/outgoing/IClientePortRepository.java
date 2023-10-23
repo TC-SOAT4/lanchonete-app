@@ -4,7 +4,7 @@ import com.fiap.lanchoneteapp.domain.cliente.core.model.Cliente;
 
 public interface IClientePortRepository {
 
-    Cliente save(Cliente cliente);
+    Cliente salvar(Cliente cliente);
 
     Cliente buscarPorCpf(String cpf);
     

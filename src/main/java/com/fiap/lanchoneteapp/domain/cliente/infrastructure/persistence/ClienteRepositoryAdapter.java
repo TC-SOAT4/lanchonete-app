@@ -15,7 +15,7 @@ public class ClienteRepositoryAdapter implements IClientePortRepository {
     private final ClienteRepository clienteRepository;
 
     @Override
-    public Cliente save(Cliente cliente) {
+    public Cliente salvar(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
