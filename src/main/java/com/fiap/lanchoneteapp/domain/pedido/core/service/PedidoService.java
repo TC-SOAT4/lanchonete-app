@@ -46,16 +46,12 @@ public class PedidoService implements IRealizarCheckout, IListarPedidos {
 
     @Override
     public ResumoPedidoDTO checkout(NovoPedidoDTO novoPedidoDTO) {
-
-        StatusPedido statusRecebido = StatusPedido.builder().idStatusPedido(STATUS_PEDIDO_RECEBIDO).descricao("Recebido").build();
-
         Pedido pedido = Pedido.builder()
             .data(LocalDateTime.now())
-            .statusPedido(statusRecebido)
+            .statusPedido(StatusPedido.builder().idStatusPedido(STATUS_PEDIDO_RECEBIDO).build())
             .build();
 
         if(novoPedidoDTO.getCpf() != null && !novoPedidoDTO.getCpf().isEmpty()){
-        
             Cliente cliente = buscarClientePorCPF(novoPedidoDTO.getCpf());
             pedido.setCliente(cliente);
         }
