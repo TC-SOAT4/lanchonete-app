@@ -1,7 +1,5 @@
 package com.fiap.lanchoneteapp.domain.pedido.core.model;
 
-import java.math.BigDecimal;
-
 import com.fiap.lanchoneteapp.domain.produto.core.model.Produto;
 
 import jakarta.persistence.Entity;
