@@ -13,7 +13,7 @@ public interface IProdutoPortRepository {
 
     public void remover(Produto produto);
 
-    public Optional<Produto> buscarPorId(Integer idProduto);
+    public Optional<Produto> buscarPorId(Integer codigoProduto);
 
     public List<Produto> listarTodos();
 

@@ -46,7 +46,7 @@ public class ProdutoController {
     }
 
     @PostMapping
-     @Operation(summary = "Cadastrar", description = "Cadastrar um novo produto")
+    @Operation(summary = "Cadastrar", description = "Cadastrar um novo produto")
     public ResponseEntity<ProdutoResponse> cadastrarNovoProduto(
             @RequestBody @Valid CadastroProdutoRequest cadastroProdutoRequest) {
         return ResponseEntity.ok().body(iCriarProduto.cadastrar(cadastroProdutoRequest));
@@ -68,8 +68,9 @@ public class ProdutoController {
 
     @GetMapping("/buscar-por-categoria")
     @Operation(summary = "Buscar por Categoria", description = "Buscar produtos por categoria")
-    public ResponseEntity<List<ProdutoResponse>> buscarPorCategoria(@RequestParam(name = "codigoCategoria", required = true) Integer codigoCategoria) {
+    public ResponseEntity<List<ProdutoResponse>> buscarPorCategoria(
+            @RequestParam(name = "codigoCategoria", required = true) Integer codigoCategoria) {
         return ResponseEntity.ok().body(iBuscarProdutosPorCategoria.buscarPorCategoria(codigoCategoria));
     }
-    
+
 }

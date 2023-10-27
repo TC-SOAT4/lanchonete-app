@@ -1,6 +1,8 @@
-package com.fiap.lanchoneteapp.domain.produto.core.model;
+package com.fiap.lanchoneteapp.domain.pedido.core.model;
 
 import java.math.BigDecimal;
+
+import com.fiap.lanchoneteapp.domain.produto.core.model.Produto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,23 +21,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Produto")
-public class Produto {
+@Table(name = "Item")
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProduto;
-    private String nome;
-    private String descricao;
-    private BigDecimal valor;
-    private Boolean ativo;
+    private String idItem;
 
     @ManyToOne
-    @JoinColumn(name = "categoriaId")
-    private Categoria categoria;
+    @JoinColumn(name = "produtoId")
+    private Produto produto;
 
-    public Produto(Integer idProduto) {
-        this.idProduto = idProduto;
-    }
+    @ManyToOne
+    @JoinColumn(name = "pedidoId")
+    private Pedido pedido;
+
+    private Integer quantidade;
 
 }

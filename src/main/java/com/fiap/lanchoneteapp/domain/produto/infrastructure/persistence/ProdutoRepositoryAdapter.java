@@ -37,7 +37,7 @@ public class ProdutoRepositoryAdapter implements IProdutoPortRepository {
         return produtoRepository.findById(idProduto);
     }
 
-     @Override
+    @Override
     public List<Produto> listarTodos() {
         return produtoRepository.findAll();
     }
