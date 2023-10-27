@@ -9,7 +9,7 @@ ENV MYSQL_PASSWORD=root
 
 # Exponha a porta padrão do MariaDB (3306)
 EXPOSE 3306
-
+ 
 # Crie um diretório para armazenar dados do MariaDB
 #RUN mkdir -p /var/lib/mysql
 
@@ -20,5 +20,5 @@ EXPOSE 3306
 # Eles serão executados automaticamente quando o contêiner for iniciado
 # COPY ./scripts/ /docker-entrypoint-initdb.d/
 
-# docker build -t mariadb_lanchonete .
-# docker run -d --name lanchonete_db -p 3306:3306  mariadb_lanchonete
+# docker build -t mariadb-lanchonete .
+# docker run -d --name lanchonete-db -p 3306:3306  mariadb-lanchonete
