@@ -1,0 +1,42 @@
+version: '1'
+services:
+
+  database:
+    image: thiagobsn/mariadb-lanchonete
+    ports: 
+      - 3306:3306
+    networks:
+      -  app-network
+    volumes:
+      - mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=lanchonetedb
+      - MYSQL_USER=mariadb
+      - MYSQL_PASSWORD=root
+
+  app:
+    image: thiagobsn/lanchonete-app
+    ports: 
+      - 8080:8080
+    networks:
+      - app-network
+    depends_on: 
+      - database
+    links:
+      - database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://database:3306/lanchonetedb
+      - SPRING_DATABASE_PASSWORD=root
+      - SPRING_DATABASE_USERNAME=mariadb  
+   
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+    mariadb: {}
+
+
+   
+    
