@@ -18,7 +18,8 @@ public class PedidoRepositoryAdapter implements IPedidoPortRepository {
 
     @Override
     public Pedido novoPedido(Pedido pedido) {
-        return pedidoRepository.save(pedido);
+        pedido = pedidoRepository.save(pedido);
+        return pedidoRepository.findById(pedido.getIdPedido()).get();
     }
 
     @Override

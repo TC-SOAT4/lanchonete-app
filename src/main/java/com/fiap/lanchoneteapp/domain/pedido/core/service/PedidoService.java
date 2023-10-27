@@ -40,8 +40,8 @@ public class PedidoService implements IRealizarCheckout, IListarPedidos {
 
     @Override
     public List<PedidoListaDTO> listarPadidos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarPadidos'");
+        List<Pedido> lista = iPedidoPortRepository.listar();
+        return lista.stream().map(pedido -> new PedidoListaDTO(pedido)).toList();
     }
 
     @Override

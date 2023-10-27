@@ -39,8 +39,7 @@ public class PedidoController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista pedidos")
-    public ResponseEntity< List<PedidoListaDTO>> listarPedidos(
-            @RequestBody @Valid NovoPedidoDTO novoPedidoDTO) {
+    public ResponseEntity< List<PedidoListaDTO>> listarPedidos() {
         return ResponseEntity.ok().body(iListarPedidos.listarPadidos());
     }
     
