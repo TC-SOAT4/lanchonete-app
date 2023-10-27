@@ -15,7 +15,7 @@ import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.ICriarProduto;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IEditarProduto;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IListarTodoProdutos;
 import com.fiap.lanchoneteapp.domain.produto.core.ports.incoming.IRemoverProduto;
-import com.fiap.lanchoneteapp.domain.produto.infrastructure.persistence.ProdutoRepositoryAdapter;
+import com.fiap.lanchoneteapp.domain.produto.core.ports.outgoing.IProdutoPortRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class ProdutoService implements ICriarProduto, IEditarProduto, IRemoverProduto, IListarTodoProdutos, IBuscarProdutosPorCategoria, IBuscarProdutoPorCodigo {
 
-    private final ProdutoRepositoryAdapter produtoRepositoryAdapter;
+    private final IProdutoPortRepository iProdutoPortRepository;
 
     public ProdutoResponse cadastrar(CadastroProdutoRequest cadastroProdutoRequest) {
 
@@ -35,7 +35,7 @@ public class ProdutoService implements ICriarProduto, IEditarProduto, IRemoverPr
                 .ativo(Boolean.TRUE)
                 .build();
 
-        novoProduto = produtoRepositoryAdapter.salvar(novoProduto);
+        novoProduto = iProdutoPortRepository.salvar(novoProduto);
 
         return new ProdutoResponse(novoProduto);
     }
@@ -51,29 +51,29 @@ public class ProdutoService implements ICriarProduto, IEditarProduto, IRemoverPr
                 .ativo(editarProdutoRequest.getAtivo())
                 .build();
 
-        novoProduto = produtoRepositoryAdapter.salvar(novoProduto);
+        novoProduto = iProdutoPortRepository.salvar(novoProduto);
 
         return new ProdutoResponse(novoProduto);
     }
 
     @Override
     public void remover(Integer id) {
-        produtoRepositoryAdapter.buscarPorId(id).ifPresent(produtoRepositoryAdapter::remover);
+        iProdutoPortRepository.buscarPorId(id).ifPresent(iProdutoPortRepository::remover);
     }
 
     @Override
     public List<ProdutoResponse> listarTodos() {
-        return produtoRepositoryAdapter.listarTodos().stream().map(prduto -> new ProdutoResponse(prduto)).toList();
+        return iProdutoPortRepository.listarTodos().stream().map(prduto -> new ProdutoResponse(prduto)).toList();
     }
 
     @Override
     public List<ProdutoResponse> buscarPorCategoria(Integer idCategoria) {
-        return produtoRepositoryAdapter.buscarPorCategoria(idCategoria).stream().map(prduto -> new ProdutoResponse(prduto)).toList();
+        return iProdutoPortRepository.buscarPorCategoria(idCategoria).stream().map(prduto -> new ProdutoResponse(prduto)).toList();
     }
 
     @Override
     public ProdutoResponse buscarPorCodigo(Integer codigoProduto) {
-        Produto produto = produtoRepositoryAdapter.buscarPorId(codigoProduto).get();
+        Produto produto = iProdutoPortRepository.buscarPorId(codigoProduto).get();
         return new ProdutoResponse(produto);
     }
 
