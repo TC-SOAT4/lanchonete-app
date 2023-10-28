@@ -73,7 +73,7 @@ $ docker-compose up --build
 ##### Clientes
 
 | Código  |  Nome | CPF |
-| ------------ | ------------ |
+| ------------ | ------------ |  ------------ |
 | 1  | Home Simpson  | 12345678901 |
 | 2  | Bart Simpson  | 12345678920 |
 
