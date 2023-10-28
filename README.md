@@ -1,6 +1,7 @@
-## Lanchonete-app
 ### Tech Challenge - FASE 1
-- Aplicação para controle de pedidos, produtos e clientes de uma lanchonete.
+- Sistema desenvolvido como forma de avalição da primeira fase do curso de Pós graduação de Arquitetura de Software. Se trata de controle de pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento aos clientes e gerenciar o estoque de maneira adequada
+
+
 
 **Sobre o projeto**
 * Spring-boot 3 com Java 17
