@@ -1,9 +1,6 @@
 ### Tech Challenge - FASE 1
 <p align="center">
-Sistema desenvolvido como forma de avalição da primeira fase do curso 
-de Pós graduação de Arquitetura de Software. Se trata de controle de 
-pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento 
-aos clientes e gerenciar o estoque de maneira adequada
+Sistema desenvolvido como forma de avalição da primeira fase do curso de Pós graduação de Arquitetura de Software. Se trata de controle de pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento aos clientes e gerenciar o estoque de maneira adequada
 </p>
 
 
