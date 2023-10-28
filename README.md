@@ -14,15 +14,18 @@
 - Criação do banco de dados
 
 ```
-$ docker run --detach --name mariadb-lanchonete-db -p 3306:3306 --env MARIADB_DATABASE=lanchonetedb --env  MARIADB_USER=mariadb --env MARIADB_PASSWORD=root --env MARIADB_ROOT_PASSWORD=root mariadb:latest ```
+$ docker run --detach --name mariadb-lanchonete-db -p 3306:3306 --env MARIADB_DATABASE=lanchonetedb --env  MARIADB_USER=mariadb --env MARIADB_PASSWORD=root --env MARIADB_ROOT_PASSWORD=root mariadb:latest
+```
 
 **Executar**
 
 ```
-$ mvn clean install```
+$ mvn clean install
+```
 
 ```
-$ spring-boot:run```
+$ spring-boot:run
+```
 
 
 **Executar utilizando o docker**
