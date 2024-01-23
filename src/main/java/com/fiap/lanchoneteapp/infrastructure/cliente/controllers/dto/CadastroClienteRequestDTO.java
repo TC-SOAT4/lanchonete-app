@@ -1,0 +1,17 @@
+package com.fiap.lanchoneteapp.infrastructure.cliente.controllers.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
+public class CadastroClienteRequestDTO {
+
+    @NotBlank
+    private String nome;
+
+    @NotBlank
+    @Size(min=11)
+    private String cpf;
+    
+}
