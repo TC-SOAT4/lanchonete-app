@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db-pod
+  labels:
+    app: db-pod
+spec:
+  containers:
+    - name: mariadb-lanchonete
+      image: thiagobsn/mariadb-lanchonete
+      ports:
+        - containerPort: 3306
+      env:
+        - name: MARIADB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: configmap-db
+              key: MARIADB_DATABASE
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-db
+              key: password
+        - name: MARIADB_USER
+          valueFrom:
+            secretKeyRef:
+              name: secret-db
+              key: username
+        - name: MARIADB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-db
+              key: password
