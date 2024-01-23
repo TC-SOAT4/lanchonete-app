@@ -27,8 +27,8 @@ services:
       - database
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://database:3306/lanchonetedb
-      - SPRING_DATABASE_PASSWORD=root
-      - SPRING_DATABASE_USERNAME=mariadb
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_USERNAME=mariadb
       - SPRING_JPA_SHOW-SQL=true
       - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
    
