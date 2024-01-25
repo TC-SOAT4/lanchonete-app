@@ -1,6 +1,7 @@
-### Tech Challenge - FASE 1
+
+### Tech Challenge - FASE 2
 <p align="center">
-Sistema desenvolvido como forma de avalição da primeira fase do curso de Pós graduação de Arquitetura de Software. Se trata de controle de pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento aos clientes e gerenciar o estoque de maneira adequada
+Sistema desenvolvido como forma de avalição da segunda fase do curso de Pós graduação de Arquitetura de Software. Se trata de um sistema para controle de pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento aos clientes e gerenciar o estoque de maneira adequada.
 </p>
 
 
@@ -80,4 +81,41 @@ $ docker-compose up --build
 | 1  | Home Simpson  | 12345678901 |
 | 2  | Bart Simpson  | 12345678920 |
 
+------------
 
+**Kubernetes**
+
+- Os arquivos de manifesto(.ymal) se encontra na raiz do projeto na pasta k8s.
+	- A pasta "01 database" contém os arquivos necessários para criar o banco de dados com ou sem volume no cluster.
+	-  A pasta "02 app" contém os arquivos necessários para criar a aplicação cluster.
+	- A ordem de execução dos manifestos de preferência deve ser seguida.
+	- A o deployment da aplicação depende de uma secret criado pelo database.
+
+```
+k8s
+└─── 01 databse
+│   └─── whit volume
+│   └─── whitout volume
+└─── 02 App
+```
+
+- Para o banco de dados com volume serão criados:
+	-	1 Configmap 
+	-	1 Secret 
+	-	1 PersistentVolume
+	-	1 PersistentVolumeClaim
+	-	1 Pod com persistentVolumeClaim
+	- 	1 Service
+
+- Para o banco de dados sem volume serão criados:
+	-	1 Configmap 
+	-	1 Secret 
+	-	1 Pod
+	- 	1 Service
+
+- Para a aplicação serão criados:
+	-	1 Configmap 
+	-	1 Deployment com 2 replicas 
+	- 	1 Service
+	-	1 ServiceAccount
+	- 	HorizontalPodAutoscaler
