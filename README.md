@@ -87,7 +87,7 @@ $ docker-compose up --build
 
 - Os arquivos de manifesto(.ymal) se encontra na raiz do projeto na pasta k8s.
 	- A pasta "01 database" contém os arquivos necessários para criar o banco de dados com ou sem volume no cluster.
-	-  A pasta "02 app" contém os arquivos necessários para criar a aplicação cluster.
+	-  A pasta "02 app" contém os arquivos necessários para criar a aplicação no cluster.
 	- A ordem de execução dos manifestos de preferência deve ser seguida.
 	- A o deployment da aplicação depende de uma secret criado pelo database.
 
