@@ -119,3 +119,20 @@ k8s
 	- 	1 Service
 	-	1 ServiceAccount
 	- 	HorizontalPodAutoscaler
+
+------------
+**Desenho da arquitetura**
+
+
+ ![Desenho da arquitetura](/assets/Lanchonete-TechChallenge-v2.drawio.png)
+
+**App com database com volume**
+
+
+ ![App com database com volume](/assets/app_database_with_volume.png)
+
+**App com database**
+
+
+ ![*App com database](/assets/app_database_without_volume.png)
+
