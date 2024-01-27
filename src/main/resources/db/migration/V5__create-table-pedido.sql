@@ -2,6 +2,7 @@ CREATE TABLE Pedido (
     idPedido INT NOT NULL AUTO_INCREMENT,
     clienteId INT,
     statusPedidoId INT NOT NULL,
+    statusPagamento VARCHAR(25),
     valorTotal DECIMAL(15, 2) NULL,
     data DATETIME NOT NULL,
     PRIMARY KEY (idPedido),

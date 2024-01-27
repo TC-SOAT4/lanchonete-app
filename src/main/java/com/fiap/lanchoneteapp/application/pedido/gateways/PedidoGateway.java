@@ -10,4 +10,9 @@ public interface PedidoGateway {
 
     public Pedido checkout(Pedido pedido);
 
+    public Pedido buscarPorId(Integer id);
+
+    void atualizarStatusPedido(Integer id, String novoStatus);
+
+    void atualizarStatusPagamento(Integer id, String status);
 }

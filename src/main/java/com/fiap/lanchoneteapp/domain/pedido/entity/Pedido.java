@@ -26,6 +26,8 @@ public class Pedido {
 
     private StatusPedido statusPedido;
 
+    private String statusPagamento;
+
     private BigDecimal valorTotal;
 
     private LocalDateTime data;
@@ -39,6 +41,7 @@ public class Pedido {
         this.itens = pedidoEntity.getItens().stream().map(Item::new).toList();
         this.cliente = new Cliente(pedidoEntity.getCliente());
         this.statusPedido = new StatusPedido( pedidoEntity.getStatusPedido());
+        this.statusPagamento = pedidoEntity.getStatusPagamento();
         this.valorTotal = pedidoEntity.getValorTotal();
         this.data = pedidoEntity.getData();
     }

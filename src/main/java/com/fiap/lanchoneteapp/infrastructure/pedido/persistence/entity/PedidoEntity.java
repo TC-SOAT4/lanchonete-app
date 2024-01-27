@@ -47,6 +47,7 @@ public class PedidoEntity {
 
     private LocalDateTime data;
 
+    private String statusPagamento;
 
     public void setPedidoNosItens(){
         itens.forEach(item -> item.setPedido(this));

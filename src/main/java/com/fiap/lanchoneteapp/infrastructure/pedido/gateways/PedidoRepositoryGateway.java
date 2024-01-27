@@ -16,6 +16,7 @@ import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.ItemEntit
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.PedidoEntity;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.PedidoRepository;
+import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.StatusPedidoRepository;
 import com.fiap.lanchoneteapp.infrastructure.produto.controllers.dto.ProdutoResponse;
 import com.fiap.lanchoneteapp.infrastructure.produto.persistence.entity.ProdutoEntity;
 
@@ -27,11 +28,16 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     private final PedidoRepository pedidoRepository;
 
+    private final StatusPedidoRepository statusPedidoRepository;
+
     public PedidoRepositoryGateway(BuscarClientePorCpf buscarClientePorCpf,
-            BuscarProdutoPorCodigo buscarProdutoPorCodigo, PedidoRepository pedidoRepository) {
+                                   BuscarProdutoPorCodigo buscarProdutoPorCodigo,
+                                   PedidoRepository pedidoRepository,
+                                   StatusPedidoRepository statusPedidoRepository) {
         this.buscarClientePorCpf = buscarClientePorCpf;
         this.buscarProdutoPorCodigo = buscarProdutoPorCodigo;
         this.pedidoRepository = pedidoRepository;
+        this.statusPedidoRepository = statusPedidoRepository;
     }
 
     public static final Integer STATUS_PEDIDO_RECEBIDO = 1;
@@ -95,6 +101,36 @@ public class PedidoRepositoryGateway implements PedidoGateway {
                     .quantidade(i.getQuantidade())
                     .build();
         }).toList();
+    }
+
+    public Pedido buscarPorId(Integer id) {
+        PedidoEntity pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
+
+        return new Pedido(pedido);
+    }
+
+    @Override
+    public void atualizarStatusPedido(Integer id, String novoStatus) {
+        PedidoEntity pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
+
+        StatusPedidoEntity statusPedido = statusPedidoRepository.findByDescricao(novoStatus)
+                .orElseThrow(() -> new RuntimeException("Status do pedido inválido: " + novoStatus));
+
+        pedido.setStatusPedido(statusPedido);
+
+        pedidoRepository.save(pedido);
+    }
+
+    @Override
+    public void atualizarStatusPagamento(Integer id, String status) {
+        PedidoEntity pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
+
+        pedido.setStatusPagamento(status);
+
+        pedidoRepository.save(pedido);
     }
 
 }
