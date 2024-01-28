@@ -74,12 +74,37 @@ $ docker-compose up --build
 | 3  | Pronto  |
 | 4  | Finalizado  |
 
+##### Status do Pagamento
+
+| Código  |  Descrição |
+| ------------ | ------------ |
+| 1  | Aguardando  |
+| 2  | Aprovado  |
+| 3  | Não Aprovado  |
+| 4  | Cancelado  |
+
 ##### Clientes
 
 | Código  |  Nome | CPF |
 | ------------ | ------------ |  ------------ |
 | 1  | Home Simpson  | 12345678901 |
 | 2  | Bart Simpson  | 12345678920 |
+
+##### Produtos
+
+| Código  |  Descrição | Categoria |
+| ------------ | ------------ | ------------ |
+| 1  | Cheddar McMelt  |  Lanche  |
+| 2  | McChicken  |  Lanche  |
+| 3  | Big Mac  |  Lanche  |
+| 4  | Batata Frita Pequena  | Acompanhamento  |
+| 5  | Batata Frita Grande  | Acompanhamento  |
+| 6  | Chicken McNuggets  | Acompanhamento  |
+| 7  | Refrigerante pequeno  | Bebida  |
+| 8  | Refrigerante Grande  | Bebida  |
+| 9  | Garrafa Água 200ml  | Bebida  |
+| 10  | Torta de Maçã  | Sobremesa  |
+| 11 | Casquinha Mista  | Sobremesa  |
 
 ------------
 

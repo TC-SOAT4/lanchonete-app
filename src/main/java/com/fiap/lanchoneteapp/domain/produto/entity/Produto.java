@@ -33,7 +33,7 @@ public class Produto {
         this.descricao = produtoEntity.getDescricao();
         this.valor = produtoEntity.getValor();
         this.ativo = produtoEntity.getAtivo();
-        this.categoria = new Categoria(produtoEntity.getCategoria());
+        this.categoria = produtoEntity.getCategoria() != null ? new Categoria(produtoEntity.getCategoria()) : null;
     }
 
 }

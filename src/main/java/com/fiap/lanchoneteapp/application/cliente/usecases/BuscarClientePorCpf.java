@@ -14,6 +14,7 @@ public class BuscarClientePorCpf {
 
     public ClienteResponseDTO buscarPorCpf(String cpf){
         Cliente cliente = clienteGateway.buscarPorCpf(cpf);
-        return new ClienteResponseDTO(cliente);
+        return cliente != null ? new ClienteResponseDTO(cliente) : null;
     };
+
 }

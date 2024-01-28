@@ -18,7 +18,7 @@ public class CadastrarCliente {
         Cliente cliente = Cliente.builder()
                 .nome(clienteCadastro.getNome()).cpf(clienteCadastro.getCpf()).build();
 
-        cliente = clienteGateway.cadatrarCliente(null);
+        cliente = clienteGateway.cadatrarCliente(cliente);
         return new ClienteResponseDTO(cliente);
     }
 

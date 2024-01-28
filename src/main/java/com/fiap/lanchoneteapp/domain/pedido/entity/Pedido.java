@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fiap.lanchoneteapp.domain.cliente.entity.Cliente;
+import com.fiap.lanchoneteapp.domain.produto.entity.Produto;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.PedidoEntity;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class Pedido {
 
     private StatusPedido statusPedido;
 
-    private String statusPagamento;
+    private StatusPagamento statusPagamento;
 
     private BigDecimal valorTotal;
 
@@ -38,10 +39,16 @@ public class Pedido {
 
     public Pedido(PedidoEntity pedidoEntity) {
         this.idPedido = pedidoEntity.getIdPedido();
-        this.itens = pedidoEntity.getItens().stream().map(Item::new).toList();
-        this.cliente = new Cliente(pedidoEntity.getCliente());
+        this.itens = pedidoEntity.getItens().stream().map(item -> {
+            return Item.builder()
+            .idItem(item.getIdItem())
+            .produto(new Produto(item.getProduto()))
+            .quantidade(item.getQuantidade())
+            .build();
+        }).toList();
+        this.cliente = pedidoEntity.getCliente() != null ? new Cliente(pedidoEntity.getCliente()) : null;
         this.statusPedido = new StatusPedido( pedidoEntity.getStatusPedido());
-        this.statusPagamento = pedidoEntity.getStatusPagamento();
+        this.statusPagamento = pedidoEntity.getStatusPagamento() != null ? new StatusPagamento(pedidoEntity.getStatusPagamento()) : null;
         this.valorTotal = pedidoEntity.getValorTotal();
         this.data = pedidoEntity.getData();
     }

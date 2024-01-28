@@ -10,10 +10,10 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=lanchonetedb
-      - MYSQL_USER=mariadb
-      - MYSQL_PASSWORD=root
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=lanchonetedb
+      - MARIADB_USER=mariadb
+      - MARIADB_PASSWORD=root
 
   app:
     image: thiagobsn/lanchonete-app

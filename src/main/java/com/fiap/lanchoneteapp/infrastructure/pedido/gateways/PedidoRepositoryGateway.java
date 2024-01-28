@@ -8,14 +8,16 @@ import java.util.List;
 import com.fiap.lanchoneteapp.application.cliente.usecases.BuscarClientePorCpf;
 import com.fiap.lanchoneteapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.lanchoneteapp.application.produto.usecases.BuscarProdutoPorCodigo;
-import com.fiap.lanchoneteapp.domain.cliente.entity.Cliente;
 import com.fiap.lanchoneteapp.domain.pedido.entity.Item;
 import com.fiap.lanchoneteapp.domain.pedido.entity.Pedido;
 import com.fiap.lanchoneteapp.infrastructure.cliente.controllers.dto.ClienteResponseDTO;
+import com.fiap.lanchoneteapp.infrastructure.cliente.persistence.entity.ClienteEntity;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.ItemEntity;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.PedidoEntity;
+import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.StatusPagamentoEntity;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.PedidoRepository;
+import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.StatusPagamentoRepository;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.StatusPedidoRepository;
 import com.fiap.lanchoneteapp.infrastructure.produto.controllers.dto.ProdutoResponse;
 import com.fiap.lanchoneteapp.infrastructure.produto.persistence.entity.ProdutoEntity;
@@ -30,17 +32,21 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     private final StatusPedidoRepository statusPedidoRepository;
 
+    private final StatusPagamentoRepository statusPagamentoRepository;
+
     public PedidoRepositoryGateway(BuscarClientePorCpf buscarClientePorCpf,
-                                   BuscarProdutoPorCodigo buscarProdutoPorCodigo,
-                                   PedidoRepository pedidoRepository,
-                                   StatusPedidoRepository statusPedidoRepository) {
+            BuscarProdutoPorCodigo buscarProdutoPorCodigo,
+            PedidoRepository pedidoRepository,
+            StatusPedidoRepository statusPedidoRepository, StatusPagamentoRepository statusPagamentoRepository) {
         this.buscarClientePorCpf = buscarClientePorCpf;
         this.buscarProdutoPorCodigo = buscarProdutoPorCodigo;
         this.pedidoRepository = pedidoRepository;
         this.statusPedidoRepository = statusPedidoRepository;
+        this.statusPagamentoRepository = statusPagamentoRepository;
     }
 
     public static final Integer STATUS_PEDIDO_RECEBIDO = 1;
+    public static final Integer STATUS_PAGAMENTO_AGUARDANDO = 1;
 
     @Override
     public List<Pedido> listarPedidos() {
@@ -53,12 +59,13 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         PedidoEntity novoPedido = PedidoEntity.builder()
                 .data(LocalDateTime.now())
                 .statusPedido(StatusPedidoEntity.builder().idStatusPedido(STATUS_PEDIDO_RECEBIDO).build())
+                .statusPagamento(StatusPagamentoEntity.builder().idStatusPagamento(STATUS_PAGAMENTO_AGUARDANDO).build())
                 .build();
 
         if (pedido.getCliente() != null && pedido.getCliente().getCpf() != null
                 && !pedido.getCliente().getCpf().isEmpty()) {
-            Cliente cliente = buscarClientePorCPF(pedido.getCliente().getCpf());
-            pedido.setCliente(cliente);
+            ClienteEntity clienteEntity = buscarClientePorCPF(pedido.getCliente().getCpf());
+            novoPedido.setCliente(clienteEntity);
         }
 
         List<ItemEntity> itens = montarListaDeItens(pedido.getItens());
@@ -72,12 +79,12 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         return new Pedido(novoPedido);
     }
 
-    private Cliente buscarClientePorCPF(String cpf) {
+    private ClienteEntity buscarClientePorCPF(String cpf) {
         ClienteResponseDTO clienteDTO = buscarClientePorCpf.buscarPorCpf(cpf);
-        return Cliente.builder()
+        return clienteDTO != null ? ClienteEntity.builder()
                 .idCliente(clienteDTO.getIdCliente())
                 .nome(clienteDTO.getNome())
-                .build();
+                .build() : null;
     }
 
     private BigDecimal calcularValorTotalPedido(List<ItemEntity> itens) {
@@ -128,7 +135,10 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         PedidoEntity pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
 
-        pedido.setStatusPagamento(status);
+        StatusPagamentoEntity statusPagamento = statusPagamentoRepository.findByDescricao(status)
+                .orElseThrow(() -> new RuntimeException("Status do pagamento do pedido inválido: " + status));
+
+        pedido.setStatusPagamento(statusPagamento);
 
         pedidoRepository.save(pedido);
     }

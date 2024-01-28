@@ -10,6 +10,7 @@ import com.fiap.lanchoneteapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.lanchoneteapp.application.produto.usecases.BuscarProdutoPorCodigo;
 import com.fiap.lanchoneteapp.infrastructure.pedido.gateways.PedidoRepositoryGateway;
 import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.PedidoRepository;
+import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository.StatusPagamentoRepository;
 
 @Configuration
 public class PedidoConfig {
@@ -36,10 +37,12 @@ public class PedidoConfig {
 
     @Bean
     PedidoGateway pedidoGateway(BuscarClientePorCpf buscarClientePorCpf,
-                                BuscarProdutoPorCodigo buscarProdutoPorCodigo,
-                                PedidoRepository pedidoRepository,
-                                StatusPedidoRepository statusPedidoRepository) {
-        return new PedidoRepositoryGateway(buscarClientePorCpf, buscarProdutoPorCodigo, pedidoRepository, statusPedidoRepository);
+            BuscarProdutoPorCodigo buscarProdutoPorCodigo,
+            PedidoRepository pedidoRepository,
+            StatusPedidoRepository statusPedidoRepository,
+            StatusPagamentoRepository statusPagamentoRepository) {
+        return new PedidoRepositoryGateway(buscarClientePorCpf, buscarProdutoPorCodigo, pedidoRepository,
+                statusPedidoRepository, statusPagamentoRepository);
     }
 
     @Bean
