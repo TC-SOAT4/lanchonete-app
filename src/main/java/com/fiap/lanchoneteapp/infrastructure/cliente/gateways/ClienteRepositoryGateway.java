@@ -28,8 +28,8 @@ public class ClienteRepositoryGateway implements ClienteGateway {
 
     @Override
     public Cliente buscarPorCpf(String cpf) {
-        ClienteEntity cliente = clienteRepository.findByCpf(cpf);
-        return new Cliente(cliente);
+        ClienteEntity clienteEntity = clienteRepository.findByCpf(cpf);
+        return clienteEntity != null ? new Cliente(clienteEntity) : null;
     }
 
 }
