@@ -72,7 +72,7 @@ public class PedidoController {
     public ResponseEntity<String> atualizarStatusPagamento(@PathVariable Integer id, @RequestBody String statusPagamento) {
         atualizarStatusPagamento.atualizarStatusPagamento(id, statusPagamento);
 
-        return ResponseEntity.ok().body("Infomração de pagamento recebida com sucesso para o id " + id);
+        return ResponseEntity.ok().body("Informação de pagamento recebida com sucesso para o id " + id);
     }
     
 }
