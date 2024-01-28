@@ -29,4 +29,17 @@ public class PedidoListaDTO {
         this.dataHoraPedido = pedido.getData().format(formatter);
     }
 
+    public int getStatusOrder() {
+        switch (statusPedido.toLowerCase()) {
+            case "pronto":
+                return 0;
+            case "em preparação":
+                return 1;
+            case "recebido":
+                return 2;
+            default:
+                return 3;
+        }
+    }
+
 }
