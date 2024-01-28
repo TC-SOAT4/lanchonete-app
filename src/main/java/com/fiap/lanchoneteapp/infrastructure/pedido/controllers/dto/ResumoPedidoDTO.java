@@ -19,7 +19,7 @@ import lombok.Data;
 public class ResumoPedidoDTO {
 
     private Integer codigoPedido;
-    private Object nomeCliente;
+    private String nomeCliente;
     private BigDecimal valorTotal;
     private List<ResumoItemDTO> itens;
     private String statusPedido;
