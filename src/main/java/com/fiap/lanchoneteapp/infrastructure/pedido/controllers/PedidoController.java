@@ -67,14 +67,13 @@ public class PedidoController {
         return ResponseEntity.ok().body(pedidoPagoDTO);
     }
 
-    @PostMapping("/{id}/status-pagamento")
-    @Operation(summary = "Atualizar Status pagamento", description = "Atualizar status pedido")
+    @PostMapping("/{id}/atualizar-status-pagamento")
+    @Operation(summary = "Webhook - Atualizar Status pagamento", description = "Webhook para atualizar status do pagamento pedido")
     public ResponseEntity<String> atualizarStatusPagamento(@PathVariable Integer id, @RequestBody String statusPagamento) {
         atualizarStatusPagamento.atualizarStatusPagamento(id, statusPagamento);
 
         return ResponseEntity.ok().body("Infomração de pagamento recebida com sucesso para o id " + id);
     }
-
     
 }
 
