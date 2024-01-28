@@ -74,6 +74,15 @@ $ docker-compose up --build
 | 3  | Pronto  |
 | 4  | Finalizado  |
 
+##### Status do Pagamento
+
+| Código  |  Descrição |
+| ------------ | ------------ |
+| 1  | Aguardando  |
+| 2  | Aprovado  |
+| 3  | Não Aprovado  |
+| 4  | Cancelado  |
+
 ##### Clientes
 
 | Código  |  Nome | CPF |
