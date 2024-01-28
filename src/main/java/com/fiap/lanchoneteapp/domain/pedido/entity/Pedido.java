@@ -26,7 +26,7 @@ public class Pedido {
 
     private StatusPedido statusPedido;
 
-    private String statusPagamento;
+    private StatusPagamento statusPagamento;
 
     private BigDecimal valorTotal;
 
@@ -41,7 +41,7 @@ public class Pedido {
         this.itens = pedidoEntity.getItens().stream().map(Item::new).toList();
         this.cliente = new Cliente(pedidoEntity.getCliente());
         this.statusPedido = new StatusPedido( pedidoEntity.getStatusPedido());
-        this.statusPagamento = pedidoEntity.getStatusPagamento();
+        this.statusPagamento = pedidoEntity.getStatusPagamento() != null ? new StatusPagamento(pedidoEntity.getStatusPagamento()) : null;
         this.valorTotal = pedidoEntity.getValorTotal();
         this.data = pedidoEntity.getData();
     }

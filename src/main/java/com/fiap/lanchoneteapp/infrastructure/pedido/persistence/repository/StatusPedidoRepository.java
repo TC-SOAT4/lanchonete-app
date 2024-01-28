@@ -1,10 +1,10 @@
 package com.fiap.lanchoneteapp.infrastructure.pedido.persistence.repository;
 
-import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.PedidoEntity;
-import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.fiap.lanchoneteapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
 
 public interface StatusPedidoRepository extends JpaRepository<StatusPedidoEntity, Integer> {
 

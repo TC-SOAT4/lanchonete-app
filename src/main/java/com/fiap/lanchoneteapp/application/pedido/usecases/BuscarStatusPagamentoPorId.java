@@ -17,7 +17,7 @@ public class BuscarStatusPagamentoPorId {
 
         PedidoPagoDTO pedidoPago = new PedidoPagoDTO(pedido);
 
-        pedidoPago.setPedidoPago(pedido.getStatusPagamento().equals("PAGO"));
+        pedidoPago.setPedidoPago(pedido.getStatusPagamento().getDescricao().equals("Aprovado"));
 
         return pedidoPago;
     }

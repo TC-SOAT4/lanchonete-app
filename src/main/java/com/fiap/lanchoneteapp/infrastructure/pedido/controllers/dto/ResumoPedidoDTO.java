@@ -23,6 +23,7 @@ public class ResumoPedidoDTO {
     private BigDecimal valorTotal;
     private List<ResumoItemDTO> itens;
     private String statusPedido;
+    private String statusPagamento;
     private String dataHoraPedido;
 
     public ResumoPedidoDTO(Pedido pedido) {
@@ -31,6 +32,8 @@ public class ResumoPedidoDTO {
         this.nomeCliente = pedido.getCliente() != null ? pedido.getCliente().getNome() : null;
         this.valorTotal = pedido.getValorTotal();
         this.itens = pedido.getItens().stream().map(item -> new ResumoItemDTO(item)).toList();
+
+        this.statusPagamento = pedido.getStatusPagamento() != null ? pedido.getStatusPagamento().getDescricao() : null;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM HH:mm");
         this.dataHoraPedido = pedido.getData().format(formatter);

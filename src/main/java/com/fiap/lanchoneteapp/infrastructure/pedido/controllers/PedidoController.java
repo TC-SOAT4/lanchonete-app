@@ -46,26 +46,35 @@ public class PedidoController {
         return ResponseEntity.ok().body(listarPedidos.listarPedidos());
     }
 
-    @GetMapping("/{id}/pagamentos")
-    @Operation(summary = "pedidoPago", description = "Consultar se o pedido está pago")
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar", description = "Buscar")
+    public ResponseEntity<ResumoPedidoDTO> buscar(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(buscarPedidoPorId.buscarPorId(id));
+    }
+
+    @PatchMapping("/{id}")
+    @Operation(summary = "Atualizar status", description = "Atualizar status pedido")
+    public ResponseEntity<Void> atualizarStatusPedido(@PathVariable Integer id, @RequestParam String novoStatus) {
+        atualizarStatusPedido.atualizarStatusPedido(id, novoStatus);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/status-pagamento")
+    @Operation(summary = "Buscar Status Pagamento", description = "Consultar se o pedido está pago")
     public ResponseEntity<PedidoPagoDTO> obterStatusPagamento(@PathVariable Integer id) {
         PedidoPagoDTO pedidoPagoDTO = buscarStatusPagamentoPorId.buscarStatusPagamentoPorId(id);
 
         return ResponseEntity.ok().body(pedidoPagoDTO);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Void> atualizarStatusPedido(@PathVariable Integer id, @RequestParam String novoStatus) {
-        atualizarStatusPedido.atualizarStatusPedido(id, novoStatus);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping("/{id}/atualizarStatusPagamento")
-    public ResponseEntity atualizarStatusPagamento(@PathVariable Integer id, @RequestBody String statusPagamento) {
+    @PostMapping("/{id}/status-pagamento")
+    @Operation(summary = "Atualizar Status pagamento", description = "Atualizar status pedido")
+    public ResponseEntity<String> atualizarStatusPagamento(@PathVariable Integer id, @RequestBody String statusPagamento) {
         atualizarStatusPagamento.atualizarStatusPagamento(id, statusPagamento);
 
         return ResponseEntity.ok().body("Infomração de pagamento recebida com sucesso para o id " + id);
     }
+
     
 }
 
