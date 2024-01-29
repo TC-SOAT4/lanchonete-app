@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "efae32d2-2632-4bcc-9402-3216ea87c127",
+		"_postman_id": "d328da42-5050-49e7-9a87-80902fed75d3",
 		"name": "Tech Challenge FIAP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11308397"
+		"_exporter_id": "7429173"
 	},
 	"item": [
 		{
@@ -15,13 +15,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/produtos",
+							"raw": "http://localhost:8080/lanchonete-app/api/produtos",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -39,13 +36,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/produtos/{id}",
+							"raw": "http://localhost:8080/lanchonete-app/api/produtos/{id}",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -64,13 +58,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/produtos/buscar-por-categoria?codigoCategoria",
+							"raw": "http://localhost:8080/lanchonete-app/api/produtos/buscar-por-categoria?codigoCategoria=4",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -82,7 +73,7 @@
 							"query": [
 								{
 									"key": "codigoCategoria",
-									"value": null
+									"value": "4"
 								}
 							]
 						}
@@ -104,13 +95,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/produtos",
+							"raw": "http://localhost:8080/lanchonete-app/api/produtos",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -129,7 +117,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"valor\": 0,\n  \"codigoCategoria\": 0\n}",
+							"raw": "{\n    \"nome\": \"string\",\n    \"descricao\": \"string\",\n    \"valor\": 0,\n    \"codigoCategoria\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -137,13 +125,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/produtos",
+							"raw": "http://localhost:8080/lanchonete-app/api/produtos",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -167,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"cpf\": \"string\",\n  \"itens\": [\n    {\n      \"codigoProduto\": 0,\n      \"quantidade\": 0\n    }\n  ]\n}",
+							"raw": "{\n  \"cpf\": \"\",\n  \"itens\": [\n    {\n      \"codigoProduto\": 2,\n      \"quantidade\": 3\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,13 +160,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/pedidos/checkout",
+							"raw": "http://localhost:8080/lanchonete-app/api/pedidos/checkout",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -200,19 +182,121 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/pedidos",
+							"raw": "http://localhost:8080/lanchonete-app/api/pedidos",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"lanchonete-app",
 								"api",
 								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Pedidos por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lanchonete-app/api/pedidos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lanchonete-app",
+								"api",
+								"pedidos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Pagamento Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lanchonete-app/api/pedidos/2/status-pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lanchonete-app",
+								"api",
+								"pedidos",
+								"2",
+								"status-pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Status Pedido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/lanchonete-app/api/pedidos/2?novoStatus=Finalizado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lanchonete-app",
+								"api",
+								"pedidos",
+								"2"
+							],
+							"query": [
+								{
+									"key": "novoStatus",
+									"value": "Finalizado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "Aprovado",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/lanchonete-app/api/pedidos/5/atualizar-status-pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lanchonete-app",
+								"api",
+								"pedidos",
+								"5",
+								"atualizar-status-pagamento"
 							]
 						}
 					},
@@ -262,13 +346,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://184.72.91.59:8080/lanchonete-app/api/clientes/buscar-por-cpf?cpf",
+							"raw": "http://localhost:8080/lanchonete-app/api/clientes/buscar-por-cpf?cpf=12345678920",
 							"protocol": "http",
 							"host": [
-								"184",
-								"72",
-								"91",
-								"59"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -280,7 +361,7 @@
 							"query": [
 								{
 									"key": "cpf",
-									"value": null
+									"value": "12345678920"
 								}
 							]
 						}
