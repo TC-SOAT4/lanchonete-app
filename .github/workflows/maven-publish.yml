@@ -67,7 +67,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=lanchonete-app \
+            -Dsonar.projectKey=TC-SOAT4_lanchonete-app \
             -Dsonar.test.inclusions=src/java/test/**/* \
             -Dsonar.java.binaries=target/classes \
             -Dsonar.organization=tc-soat4 \
