@@ -71,7 +71,9 @@ jobs:
             -Dsonar.test.inclusions=src/java/test/**/* \
             -Dsonar.java.binaries=target/classes \
             -Dsonar.organization=tc-soat4 \
-            -Dsonar.host.url=https://sonarcloud.io/
+            -Dsonar.host.url=https://sonarcloud.io/ \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+
 
        
   build:
