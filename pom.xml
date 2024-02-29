@@ -15,6 +15,7 @@
 	<description>Trabalho final SOAT4</description>
 	<properties>
 		<java.version>17</java.version>
+		<sonar.sources>src/main/java</sonar.sources>
 	</properties>
 	<dependencies>
 
