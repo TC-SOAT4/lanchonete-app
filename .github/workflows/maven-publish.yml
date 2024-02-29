@@ -33,6 +33,10 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 17
@@ -41,11 +45,32 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven cloud
-        run:  mvn -B verify sonar:sonar -Dsonar.projectKey=lanchonete-app -Dsonar.organization=tc-soat4 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+          
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+          
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+          
+      - name: SonarCloud Scan
+        if: ${{ success() }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=lanchonete-app \
+            -Dsonar.test.inclusions=src/java/test/**/* \
+            -Dsonar.java.binaries=target/classes \
+            -Dsonar.organization=tc-soat4
        
   build:
   
