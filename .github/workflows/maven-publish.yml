@@ -72,7 +72,7 @@ jobs:
             -Dsonar.java.binaries=target/classes \
             -Dsonar.host.url=https://sonarcloud.io/ \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
- # -Dsonar.organization=tc-soat4 \
+            -Dsonar.organization=tc-soat4 \
 
 
 
