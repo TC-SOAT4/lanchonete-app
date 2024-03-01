@@ -1,5 +1,5 @@
 
-### Tech Challenge - FASE 2
+### Tech Challenge - FASE 3
 <p align="center">
 Sistema desenvolvido como forma de avalição da segunda fase do curso de Pós graduação de Arquitetura de Software. Se trata de um sistema para controle de pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento aos clientes e gerenciar o estoque de maneira adequada.
 </p>
