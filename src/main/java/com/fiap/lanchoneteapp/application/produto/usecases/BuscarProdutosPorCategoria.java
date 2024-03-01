@@ -16,5 +16,5 @@ public class BuscarProdutosPorCategoria {
     public List<ProdutoResponse> buscarPorCategoria(Integer idCategoria) {
         return produtoGateway.buscarPorCategoria(idCategoria).stream().map(prduto -> new ProdutoResponse(prduto))
                 .toList();
-    };
+    }
 }
