@@ -57,6 +57,7 @@ jobs:
           args:
             # Unique keys of your project and organization. You can find them in SonarCloud > Information (bottom-left menu)
             # mandatory
+            -Dsonar.java.source=17
             -Dsonar.projectKey=TC-SOAT4_lanchonete-app
             -Dsonar.organization=TC-SOAT4
             # Comma-separated paths to directories containing main source files.
