@@ -59,7 +59,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
 
     @Override
     public List<Produto> buscarPorCategoria(Integer idCategoria) {
-        return produtoRepository.findAllByCategoriaIdCategoria(idCategoria).stream().map(p -> new Produto(p)).toList();
+        return produtoRepository.findAllByCategoriaIdCategoria(idCategoria).stream().map(Produto::new).toList();
     }
 
     @Override

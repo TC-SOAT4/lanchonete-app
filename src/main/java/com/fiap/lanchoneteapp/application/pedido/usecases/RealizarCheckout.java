@@ -36,9 +36,9 @@ public class RealizarCheckout {
     }
 
     private List<Item> montarListaDeItens(List<ItemDTO> itens) {
-        return itens.stream().map(item -> {
-            return Item.builder().produto(Produto.builder().idProduto(item.getCodigoProduto()).build())
-                    .quantidade(item.getQuantidade()).build();
-        }).toList();
+        return itens.stream().map(item -> 
+             Item.builder().produto(Produto.builder().idProduto(item.getCodigoProduto()).build())
+                    .quantidade(item.getQuantidade()).build()
+        ).toList();
     }
 }

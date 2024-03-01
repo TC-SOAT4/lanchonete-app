@@ -15,7 +15,7 @@ public class ListarPedidos {
     }
 
     public List<PedidoListaDTO> listarPedidos() {
-        List<PedidoListaDTO> lista = pedidoGateway.listarPedidos().stream().map(pedido -> new PedidoListaDTO(pedido))
+        List<PedidoListaDTO> lista = pedidoGateway.listarPedidos().stream().map(PedidoListaDTO::new)
                 .toList();
 
         return lista.stream()
