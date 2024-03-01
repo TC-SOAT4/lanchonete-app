@@ -39,13 +39,13 @@ public class Pedido {
 
     public Pedido(PedidoEntity pedidoEntity) {
         this.idPedido = pedidoEntity.getIdPedido();
-        this.itens = pedidoEntity.getItens().stream().map(item -> {
-            return Item.builder()
+        this.itens = pedidoEntity.getItens().stream().map(item -> 
+             Item.builder()
             .idItem(item.getIdItem())
             .produto(new Produto(item.getProduto()))
             .quantidade(item.getQuantidade())
-            .build();
-        }).toList();
+            .build()
+        ).toList();
         this.cliente = pedidoEntity.getCliente() != null ? new Cliente(pedidoEntity.getCliente()) : null;
         this.statusPedido = new StatusPedido( pedidoEntity.getStatusPedido());
         this.statusPagamento = pedidoEntity.getStatusPagamento() != null ? new StatusPagamento(pedidoEntity.getStatusPagamento()) : null;

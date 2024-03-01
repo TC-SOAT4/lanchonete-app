@@ -54,7 +54,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
 
     @Override
     public List<Produto> listarTodos() {
-        return produtoRepository.findAll().stream().map(p -> new Produto(p)).toList();
+        return produtoRepository.findAll().stream().map(Produto::new).toList();
     }
 
     @Override
@@ -64,7 +64,8 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
 
     @Override
     public Produto buscarPorCodigo(Integer codigoProduto) {
-        ProdutoEntity produto = produtoRepository.findById(codigoProduto).get();
+        ProdutoEntity produto = produtoRepository.findById(codigoProduto)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
         return new Produto(produto);
     }
 

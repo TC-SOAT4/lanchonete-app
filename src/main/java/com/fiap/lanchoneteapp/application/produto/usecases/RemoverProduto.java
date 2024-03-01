@@ -12,5 +12,5 @@ public class RemoverProduto {
 
     public void remover(Integer id) {
         produtoGateway.remover(id);
-    };
+    }
 }

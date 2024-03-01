@@ -14,6 +14,6 @@ public class ListarTodoProdutos {
     }
 
     public List<ProdutoResponse> listarTodos() {
-        return produtoGateway.listarTodos().stream().map(prduto -> new ProdutoResponse(prduto)).toList();
-    };
+        return produtoGateway.listarTodos().stream().map(ProdutoResponse::new).toList();
+    }
 }

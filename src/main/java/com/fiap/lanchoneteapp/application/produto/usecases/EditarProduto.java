@@ -25,6 +25,6 @@ public class EditarProduto {
 
         produto = produtoGateway.editar(produto);
         return new ProdutoResponse(produto);
-    };
+    }
 
 }

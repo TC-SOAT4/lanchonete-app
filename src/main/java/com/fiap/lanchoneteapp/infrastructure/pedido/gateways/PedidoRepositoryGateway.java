@@ -34,6 +34,8 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     private final StatusPagamentoRepository statusPagamentoRepository;
 
+    public static final String MSG_PEDIDO_NAO_ENCONTRADO = "Pedido não encontrado com o ID: ";
+
     public PedidoRepositoryGateway(BuscarClientePorCpf buscarClientePorCpf,
             BuscarProdutoPorCodigo buscarProdutoPorCodigo,
             PedidoRepository pedidoRepository,
@@ -51,7 +53,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     @Override
     public List<Pedido> listarPedidos() {
         List<PedidoEntity> lista = pedidoRepository.findAll();
-        return lista.stream().map(p -> new Pedido(p)).toList();
+        return lista.stream().map(Pedido::new).toList();
     }
 
     @Override
@@ -88,9 +90,9 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     }
 
     private BigDecimal calcularValorTotalPedido(List<ItemEntity> itens) {
-        return itens.stream().map(item -> {
-            return item.getProduto().getValor().multiply(BigDecimal.valueOf(item.getQuantidade()));
-        }).reduce(BigDecimal.ZERO, (totalPedido, valorTotalItem) -> totalPedido.add(valorTotalItem)).setScale(2,
+        return itens.stream().map(item -> 
+            item.getProduto().getValor().multiply(BigDecimal.valueOf(item.getQuantidade()))
+        ).reduce(BigDecimal.ZERO, (totalPedido, valorTotalItem) -> totalPedido.add(valorTotalItem)).setScale(2,
                 RoundingMode.HALF_UP);
     }
 
@@ -112,7 +114,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     public Pedido buscarPorId(Integer id) {
         PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
 
         return new Pedido(pedido);
     }
@@ -120,7 +122,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     @Override
     public void atualizarStatusPedido(Integer id, String novoStatus) {
         PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
 
         StatusPedidoEntity statusPedido = statusPedidoRepository.findByDescricao(novoStatus)
                 .orElseThrow(() -> new RuntimeException("Status do pedido inválido: " + novoStatus));
@@ -133,7 +135,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     @Override
     public void atualizarStatusPagamento(Integer id, String status) {
         PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
 
         StatusPagamentoEntity statusPagamento = statusPagamentoRepository.findByDescricao(status)
                 .orElseThrow(() -> new RuntimeException("Status do pagamento do pedido inválido: " + status));

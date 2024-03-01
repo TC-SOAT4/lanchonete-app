@@ -25,6 +25,6 @@ public class CriarProduto {
 
         novoProduto = produtoGateway.cadastrar(novoProduto);
         return new ProdutoResponse(novoProduto);
-    };
+    }
 
 }

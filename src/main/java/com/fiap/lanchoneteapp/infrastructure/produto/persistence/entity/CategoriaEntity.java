@@ -31,10 +31,10 @@ public class CategoriaEntity {
         this.idCategoria =  idCategoria;
     }
 
-    public CategoriaEntity(Categoria Categoria) {
-        this.idCategoria = Categoria.getIdCategoria();
-        this.nome = Categoria.getNome();
-        this.ativo = Categoria.getAtivo();
+    public CategoriaEntity(Categoria categoria) {
+        this.idCategoria = categoria.getIdCategoria();
+        this.nome = categoria.getNome();
+        this.ativo = categoria.getAtivo();
     }
 
 }
