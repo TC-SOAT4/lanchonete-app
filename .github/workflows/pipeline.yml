@@ -95,7 +95,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: jar-artifact
-        path: ${{ github.workspace }}/lanchonete-app/target/*.jar
+        path: ${{ github.workspace }}/target/*.jar
         retention-days: 1
         
   dcoker:
