@@ -39,7 +39,7 @@ public class ProdutoController {
     private final ListarTodoProdutos listarTodoProdutos;
     private final BuscarProdutosPorCategoria buscarProdutosPorCategoria;
 
-    @GetMapping
+    @GetMapping("listar")
     @Operation(summary = "Listar todos", description = "listar todos os produtos")
     public ResponseEntity<List<ProdutoResponse>> listarTodos() {
         return ResponseEntity.ok().body(listarTodoProdutos.listarTodos());
