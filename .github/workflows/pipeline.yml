@@ -151,10 +151,10 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{env.AWS_REGION}}
+        aws-region: us-east-1
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+      run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region us-east-1
 
     - name: Deploy to EKS
       env:
