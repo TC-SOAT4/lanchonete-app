@@ -99,13 +99,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    - name: Copy Jar file
-      run: mv target/$(ls build/libs) app.jar
-
     - uses: actions/upload-artifact@master
       with:
         name: jar-file
-        path: app.jar
+        path: target/app.jar
         
   docker:
     name: Docker
@@ -120,6 +117,12 @@ jobs:
       with:
         name: jar-file
         path: app.jar
+
+    - name: Copy Jar file
+      run: mv app.jar target/
+
+    - name: Copy Jar file
+      run: mv target/$(ls build/libs) app.jar
          
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
