@@ -154,7 +154,7 @@ jobs:
         aws-region: us-east-1
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region us-east-1
+      run: aws eks update-kubeconfig --name tr-lanchonete-eks-hjulUTvE --region us-east-1
 
     - name: Deploy to EKS
       env:
