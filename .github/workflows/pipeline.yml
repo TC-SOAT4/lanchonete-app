@@ -106,5 +106,6 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        context: /home/runner/work/lanchonete-app/lanchonete-app/.
         push: true
         tags: user/app:latest
