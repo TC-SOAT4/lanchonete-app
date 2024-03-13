@@ -111,33 +111,10 @@ $ docker-compose up --build
 **Kubernetes**
 
 - Os arquivos de manifesto(.ymal) se encontra na raiz do projeto na pasta k8s.
-	- A pasta "01 database" contém os arquivos necessários para criar o banco de dados com ou sem volume no cluster.
-	-  A pasta "02 app" contém os arquivos necessários para criar a aplicação no cluster.
 	- A ordem de execução dos manifestos de preferência deve ser seguida.
-	- A o deployment da aplicação depende de uma secret criado pelo database.
-
 ```
 k8s
-└─── 01 databse
-│   └─── whit volume
-│   └─── whitout volume
-└─── 02 App
 ```
-
-- Para o banco de dados com volume serão criados:
-	-	1 Configmap 
-	-	1 Secret 
-	-	1 PersistentVolume
-	-	1 PersistentVolumeClaim
-	-	1 Pod com persistentVolumeClaim
-	- 	1 Service
-
-- Para o banco de dados sem volume serão criados:
-	-	1 Configmap 
-	-	1 Secret 
-	-	1 Pod
-	- 	1 Service
-
 - Para a aplicação serão criados:
 	-	1 Configmap 
 	-	1 Deployment com 2 replicas 
@@ -146,17 +123,6 @@ k8s
 	- 	HorizontalPodAutoscaler
 
 ------------
-**Desenho da arquitetura**
-
-
- ![Desenho da arquitetura](/assets/Lanchonete-TechChallenge-v2.drawio.png)
-
-**App com database com volume**
-
-
- ![App com database com volume](/assets/app_database_with_volume.png)
-
-**App com database**
 
 
  ![*App com database](/assets/app_database_without_volume.png)
