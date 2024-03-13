@@ -17,12 +17,14 @@ public class Cliente {
 
     private String nome;
     private String cpf;
+    private String email;
     private Boolean ativo;
 
     public Cliente(ClienteEntity clienteEntity) {
         this.idCliente = clienteEntity.getIdCliente();
         this.nome = clienteEntity.getNome();
         this.cpf = clienteEntity.getCpf();
+        this.email = clienteEntity.getEmail();
         this.ativo = clienteEntity.getAtivo();
     }
 

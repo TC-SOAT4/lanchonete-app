@@ -24,6 +24,7 @@ public class ClienteEntity {
     
     private String nome;
     private String cpf;
+    private String email;
     private Boolean ativo;
 
 }

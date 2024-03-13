@@ -16,11 +16,14 @@ public class ClienteResponseDTO {
     private Integer idCliente;
     private String nome;
     private String cpf;
+    private String email;
+
 
     
     public ClienteResponseDTO(Cliente cliente){
         this.idCliente = cliente.getIdCliente();
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
+        this.email = cliente.getEmail();
     }
 }
