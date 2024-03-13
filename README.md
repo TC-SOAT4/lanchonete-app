@@ -134,7 +134,7 @@ curl --request GET \
 
 **Cadastro de usuário no Cognito**
 
-*[ SignIn/SignUp Cognito]( [http://localhost:8080/lanchonete-app/swagger-ui/index.html " http://localhost:8080/lanchonete-app/swagger-ui/index.html](https://lanchonete-usuarios.auth.us-east-1.amazoncognito.com/login?client_id=3mvfkl5ol4di361n0b1lldtoei&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F)https://lanchonete-usuarios.auth.us-east-1.amazoncognito.com/login?client_id=3mvfkl5ol4di361n0b1lldtoei&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F")
+[SignIn/SignUp - Cognito](https://lanchonete-usuarios.auth.us-east-1.amazoncognito.com/login?client_id=3mvfkl5ol4di361n0b1lldtoei&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F "SignIn/SignUp - Cognito")
 
 
 
