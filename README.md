@@ -128,7 +128,7 @@ k8s
 
 ```
 curl --request GET \
-  --url 'https://lfnpcwi61a.execute-api.us-east-1.amazonaws.com/Prod/auth?password=123456&username=01367610389' \
+  --url 'https://lfnpcwi61a.execute-api.us-east-1.amazonaws.com/Prod/auth?password=<SENHA>&username=<CPF>' \
   --header 'User-Agent:: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 ```
 
