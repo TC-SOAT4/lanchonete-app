@@ -123,3 +123,18 @@ k8s
 	- 	HorizontalPodAutoscaler
 
 ------------
+
+**Função Lambda para autenticação**
+
+```
+curl --request GET \
+  --url 'https://lfnpcwi61a.execute-api.us-east-1.amazonaws.com/Prod/auth?password=123456&username=01367610389' \
+  --header 'User-Agent:: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+```
+
+**Cadastro de usuário no Cognito**
+
+*[ SignIn/SignUp Cognito]( [http://localhost:8080/lanchonete-app/swagger-ui/index.html " http://localhost:8080/lanchonete-app/swagger-ui/index.html](https://lanchonete-usuarios.auth.us-east-1.amazoncognito.com/login?client_id=3mvfkl5ol4di361n0b1lldtoei&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F)https://lanchonete-usuarios.auth.us-east-1.amazoncognito.com/login?client_id=3mvfkl5ol4di361n0b1lldtoei&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F")
+
+
+
