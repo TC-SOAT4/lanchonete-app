@@ -18,6 +18,7 @@ public class ClienteRepositoryGateway implements ClienteGateway {
         ClienteEntity novoCliente = ClienteEntity.builder()
                 .nome(cliente.getNome())
                 .cpf(cliente.getCpf())
+                .email(cliente.getEmail())
                 .ativo(Boolean.TRUE)
                 .build();
 

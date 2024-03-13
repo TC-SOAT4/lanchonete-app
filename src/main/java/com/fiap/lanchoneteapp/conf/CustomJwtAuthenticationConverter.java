@@ -9,19 +9,34 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.stereotype.Component;
 
+import com.fiap.lanchoneteapp.application.cliente.usecases.CadastrarClientePeloToken;
+
+import lombok.RequiredArgsConstructor;
+
+
+
+@Component
+@RequiredArgsConstructor
 public class CustomJwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken> {
     private static final String COGNITO_GROUPS = "cognito:groups";
+    private static final String COGNITO_USERNAME = "username";
 
+    private final CadastrarClientePeloToken cadastrarClientePeloToken;
 
     @Override
     public AbstractAuthenticationToken convert(Jwt source) {
 
+        String username = (String) source.getClaims().get(COGNITO_USERNAME);
+        cadastrarClientePeloToken.cadastrarSeNaoCadastrado(username, source.getTokenValue());
+
         @SuppressWarnings("unchecked")
         List<String> roles = (List<String>) source.getClaims().get(COGNITO_GROUPS);
-
+        System.out.println(source.getClaims().toString());
+        
         if(roles == null || roles.isEmpty())
-            return new JwtAuthenticationToken(source, Arrays.asList(new SimpleGrantedAuthority("ROLE_DEFAULT")));
+            return new JwtAuthenticationToken(source, Arrays.asList(new SimpleGrantedAuthority("ROLE_CLIENTE")));
 
         // Create authorities from roles.
         List<SimpleGrantedAuthority> authorities = roles.stream()
