@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NovoPedidoDTO {
 
-    private String cpf;
-
     @NotNull
     @Size(min = 1)
     private List<ItemDTO> itens;

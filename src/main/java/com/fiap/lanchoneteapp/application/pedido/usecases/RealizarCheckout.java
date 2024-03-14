@@ -24,11 +24,15 @@ public class RealizarCheckout {
     }
 
     public ResumoPedidoDTO checkout(NovoPedidoDTO novoPedidoDTO) {
+      return checkout(novoPedidoDTO, null);
+    }
+
+    public ResumoPedidoDTO checkout(NovoPedidoDTO novoPedidoDTO, String cpf) {
         Pedido pedido = Pedido.builder()
                 .data(LocalDateTime.now())
                 .statusPedido(StatusPedido.builder().idStatusPedido(STATUS_PEDIDO_RECEBIDO).build())
                 .itens(montarListaDeItens(novoPedidoDTO.getItens()))
-                .cliente(novoPedidoDTO.getCpf() != null ? Cliente.builder().cpf(novoPedidoDTO.getCpf()).build() : null)
+                .cliente(cpf != null ? Cliente.builder().cpf(cpf).build() : null)
                 .build();
         pedido = pedidoGateway.checkout(pedido);
 

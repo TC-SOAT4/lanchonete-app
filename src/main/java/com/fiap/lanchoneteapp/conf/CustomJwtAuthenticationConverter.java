@@ -36,14 +36,14 @@ public class CustomJwtAuthenticationConverter implements Converter<Jwt, Abstract
         System.out.println(source.getClaims().toString());
         
         if(roles == null || roles.isEmpty())
-            return new JwtAuthenticationToken(source, Arrays.asList(new SimpleGrantedAuthority("ROLE_CLIENTE")));
+            return new JwtAuthenticationToken(source, Arrays.asList(new SimpleGrantedAuthority("ROLE_CLIENTE")), username);
 
         // Create authorities from roles.
         List<SimpleGrantedAuthority> authorities = roles.stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .collect(Collectors.toList());
                 
-        return new JwtAuthenticationToken(source, authorities);
+        return new JwtAuthenticationToken(source, authorities, username);
   
     }
 }
