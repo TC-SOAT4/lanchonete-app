@@ -128,13 +128,13 @@ k8s
 
 ```
 curl --request GET \
-  --url 'https://fx2a0187d3.execute-api.us-east-1.amazonaws.com/Prod/auth?password=123456&username=01367610389' \
+  --url 'https://985mplkctd.execute-api.us-east-1.amazonaws.com/Prod/auth?password=<password>&username=<cpf>' \
   --header 'User-Agent:: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 ```
 
 **Cadastro de usuário no Cognito**
 
-[SignIn/SignUp - Cognito](https://lanchonete-usuarios.auth.us-east-1.amazoncognito.com/login?client_id=3mvfkl5ol4di361n0b1lldtoei&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F "SignIn/SignUp - Cognito")
+[SignIn/SignUp - Cognito](https://lanchonete-app-dev.auth.us-east-1.amazoncognito.com/login?client_id=7kefq0oq2dslf9gdcfomrepp0q&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.example.com%2F "SignIn/SignUp - Cognito")
 
 
 
