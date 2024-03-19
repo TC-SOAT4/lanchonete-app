@@ -6,7 +6,7 @@ name: Maven Package
 on:
   push:
     branches:
-      - dev-thiago
+      - main
 
 jobs:
 
@@ -154,7 +154,7 @@ jobs:
         aws-region: us-east-1
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name tr-lanchonete-eks-hjulUTvE --region us-east-1
+      run: aws eks update-kubeconfig --name tr-lanchonete-eks-JuDwQX65 --region us-east-1
 
     - name: Deploy to EKS
       env:
